@@ -42,7 +42,7 @@ repositories {
 }
 
 ext {
-	springCloudVersion = "2025.1.1"
+	springCloudVersion = "2025.1.2"
 }
 
 // before committing a change, make sure task still works
