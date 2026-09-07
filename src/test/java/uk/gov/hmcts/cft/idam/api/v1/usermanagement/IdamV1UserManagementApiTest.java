@@ -59,13 +59,13 @@ class IdamV1UserManagementApiTest {
     @Test
     void testGetUserByEmailForOneUser() {
         User result = underTest.getUserByEmail("oneuser@test.local");
-        assertNotNull(result);
+        assertNotNull(result, "Expected one user for the email address");
     }
 
     @Test
     void testGetUserByEmailForNoUsers() {
         User result = underTest.getUserByEmail("nousers@test.local");
-        assertNull(result);
+        assertNull(result, "Expected no user for the email address");
     }
 
     @Test
@@ -73,7 +73,8 @@ class IdamV1UserManagementApiTest {
         try {
             underTest.getUserByEmail("twousers@test.local");
         } catch (HttpStatusCodeException hsce) {
-            assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, hsce.getStatusCode());
+            assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, hsce.getStatusCode(),
+                "Multiple email matches should produce an internal server error");
         }
 
     }
@@ -81,13 +82,13 @@ class IdamV1UserManagementApiTest {
     @Test
     void testGetUserBySsoIdForOneUser() {
         User result = underTest.getUserBySsoId("oneuserssoid");
-        assertNotNull(result);
+        assertNotNull(result, "Expected one user for the SSO ID");
     }
 
     @Test
     void testGetUserBySsoIdForNoUsers() {
         User result = underTest.getUserBySsoId("nousersssoid");
-        assertNull(result);
+        assertNull(result, "Expected no user for the SSO ID");
     }
 
     @Test
@@ -95,7 +96,8 @@ class IdamV1UserManagementApiTest {
         try {
             underTest.getUserBySsoId("twousersssoid");
         } catch (HttpStatusCodeException hsce) {
-            assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, hsce.getStatusCode());
+            assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, hsce.getStatusCode(),
+                "Multiple SSO ID matches should produce an internal server error");
         }
 
     }

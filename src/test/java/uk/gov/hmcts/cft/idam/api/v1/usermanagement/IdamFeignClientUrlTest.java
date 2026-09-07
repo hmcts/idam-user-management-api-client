@@ -6,14 +6,13 @@ import org.springframework.mock.env.MockEnvironment;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SuppressWarnings("PMD.JUnit5TestShouldBePackagePrivate")
-public class IdamFeignClientUrlTest {
+class IdamFeignClientUrlTest {
 
     private static final String LEGACY_URL = "https://legacy-idam.example";
     private static final String OVERRIDE_URL = "https://user-management-idam.example";
 
     @Test
-    public void shouldUseLegacyUrlByDefault() {
+    void shouldUseLegacyUrlByDefault() {
         MockEnvironment environment = new MockEnvironment()
             .withProperty("idam.api.url", LEGACY_URL);
 
@@ -21,7 +20,7 @@ public class IdamFeignClientUrlTest {
     }
 
     @Test
-    public void shouldUseClientSpecificUrlWhenConfigured() {
+    void shouldUseClientSpecificUrlWhenConfigured() {
         MockEnvironment environment = new MockEnvironment()
             .withProperty("idam.api.url", LEGACY_URL)
             .withProperty("idam.idam-api.url", OVERRIDE_URL);
