@@ -8,6 +8,28 @@ A Java library to simplify making V1 User Management calls to IdAM API for sprin
 
 The library includes the idam-api V1 user model, and Feign classes for accessing the most commonly used idam-api V1 endpoints.
 
+Configure the IDAM API base URL using the existing `idam.api.url` property:
+
+```yaml
+idam:
+  api:
+    url: https://idam.example
+```
+
+If another library also uses `idam.api.url` and requires a different value, set
+`idam.idam-api.url` to override the URL for this library's Feign clients only:
+
+```yaml
+idam:
+  api:
+    url: https://legacy-idam.example
+  idam-api:
+    url: https://user-management-idam.example
+```
+
+`idam.api.url` remains the preferred property. When `idam.idam-api.url` is set,
+it takes precedence for both user-management Feign clients.
+
 After importing the library you will need to enable the feign classes using the spring annotation:
 
 ```

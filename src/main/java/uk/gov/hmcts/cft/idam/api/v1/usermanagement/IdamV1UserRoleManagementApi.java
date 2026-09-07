@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 /**
  * Idam V1 User Role Management Api.
  */
-@FeignClient(name = "idamv1userrolemanagement", url = "${idam.api.url}")
+@FeignClient(name = "idamv1userrolemanagement", url = "${idam.idam-api.url:${idam.api.url}}")
 public interface IdamV1UserRoleManagementApi {
 
     /**
