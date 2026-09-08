@@ -22,4 +22,12 @@ public class UserRegistrationRequest {
     @JsonProperty("roles")
     private List<String> roleNames;
 
+    /**
+     * Creates an empty user registration request.
+     */
+    @SuppressWarnings("PMD.UnnecessaryConstructor")
+    public UserRegistrationRequest() {
+        // Required for deserialization and documented for Javadoc.
+    }
+
 }

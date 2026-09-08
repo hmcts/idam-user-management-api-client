@@ -16,4 +16,12 @@ public class User extends BaseUser {
     @JsonProperty("roles")
     private List<String> roleNames;
 
+    /**
+     * Creates an empty user.
+     */
+    @SuppressWarnings("PMD.UnnecessaryConstructor")
+    public User() {
+        super();
+    }
+
 }
