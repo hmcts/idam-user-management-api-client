@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * Idam V1 User Management Api.
  */
-@FeignClient(name = "idamv1usermanagement", url = "${idam.api.url}")
+@FeignClient(name = "idamv1usermanagement", url = "${idam.idam-api.url:${idam.api.url}}")
 public interface IdamV1UserManagementApi {
 
     /**

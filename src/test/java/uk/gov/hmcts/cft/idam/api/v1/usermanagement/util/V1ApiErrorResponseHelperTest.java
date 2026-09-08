@@ -13,6 +13,7 @@ class V1ApiErrorResponseHelperTest {
         String errorResponse = result.getResponseBodyAsString();
         assertEquals(
                 "{\"status\":500,\"errorMessage\":\"test-message\",\"errorMessages\":null}",
-                errorResponse);
+                errorResponse,
+                "Expected the error response to contain the supplied message");
     }
 }
