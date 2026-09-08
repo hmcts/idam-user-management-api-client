@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Role Definition
+ * Role Definition.
  */
 @Getter
 @Setter
