@@ -1,12 +1,12 @@
 package uk.gov.hmcts.cft.idam.api.v1.usermanagement;
 
-import uk.gov.hmcts.cft.idam.api.v1.usermanagement.model.RoleDefinition;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import uk.gov.hmcts.cft.idam.api.v1.usermanagement.model.RoleDefinition;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,11 +31,13 @@ public interface IdamV1UserRoleManagementApi {
      * @param roleNames list of role names
      */
     default void grantRolesToUserByRoleName(String userId, List<String> roleNames) {
-        grantRolesToUser(userId, roleNames.stream().map(name -> {
-                    RoleDefinition rd = new RoleDefinition();
-                    rd.setName(name);
-                    return rd;
-                }).collect(Collectors.toList()));
+        grantRolesToUser(userId, roleNames.stream()
+            .map(name -> {
+                RoleDefinition roleDefinition = new RoleDefinition();
+                roleDefinition.setName(name);
+                return roleDefinition;
+            })
+            .collect(Collectors.toList()));
     }
 
     /**

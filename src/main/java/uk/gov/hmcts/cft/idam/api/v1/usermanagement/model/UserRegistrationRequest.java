@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * User Registration Request
+ * User Registration Request.
  */
 @Getter
 @Setter
@@ -21,5 +21,13 @@ public class UserRegistrationRequest {
 
     @JsonProperty("roles")
     private List<String> roleNames;
+
+    /**
+     * Creates an empty user registration request.
+     */
+    @SuppressWarnings("PMD.UnnecessaryConstructor")
+    public UserRegistrationRequest() {
+        // Required for deserialization and documented for Javadoc.
+    }
 
 }
