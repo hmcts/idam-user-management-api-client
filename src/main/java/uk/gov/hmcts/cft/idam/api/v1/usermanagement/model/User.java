@@ -7,13 +7,21 @@ import lombok.Setter;
 import java.util.List;
 
 /**
- * User
+ * User.
  */
 @Getter
 @Setter
 public class User extends BaseUser {
 
-  @JsonProperty("roles")
-  private List<String> roleNames;
+    @JsonProperty("roles")
+    private List<String> roleNames;
+
+    /**
+     * Creates an empty user.
+     */
+    @SuppressWarnings("PMD.UnnecessaryConstructor")
+    public User() {
+        super();
+    }
 
 }

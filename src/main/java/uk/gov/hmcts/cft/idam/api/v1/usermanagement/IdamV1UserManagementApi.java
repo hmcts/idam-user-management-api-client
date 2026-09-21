@@ -97,5 +97,9 @@ public interface IdamV1UserManagementApi {
      * @return list of users
      */
     @GetMapping("/api/v1/users")
-    List<User> searchUsers(@RequestParam String query, @RequestParam(required = false) Integer size, @RequestParam(required = false) Integer page);
+    List<User> searchUsers(
+        @RequestParam String query,
+        @RequestParam(required = false) Integer size,
+        @RequestParam(required = false) Integer page
+    );
 }
