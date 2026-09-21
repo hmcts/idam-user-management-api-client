@@ -25,7 +25,6 @@ public class UserRegistrationRequest {
     /**
      * Creates an empty user registration request.
      */
-    @SuppressWarnings("PMD.UnnecessaryConstructor")
     public UserRegistrationRequest() {
         // Required for deserialization and documented for Javadoc.
     }

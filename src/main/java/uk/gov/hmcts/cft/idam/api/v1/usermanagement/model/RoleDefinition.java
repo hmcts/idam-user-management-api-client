@@ -15,7 +15,6 @@ public class RoleDefinition {
     /**
      * Creates an empty role definition.
      */
-    @SuppressWarnings("PMD.UnnecessaryConstructor")
     public RoleDefinition() {
         // Required for deserialization and documented for Javadoc.
     }

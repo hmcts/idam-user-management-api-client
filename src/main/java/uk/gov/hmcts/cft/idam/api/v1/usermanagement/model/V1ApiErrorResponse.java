@@ -19,7 +19,6 @@ public class V1ApiErrorResponse {
     /**
      * Creates an empty API error response.
      */
-    @SuppressWarnings("PMD.UnnecessaryConstructor")
     public V1ApiErrorResponse() {
         // Required for deserialization and documented for Javadoc.
     }
