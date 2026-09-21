@@ -1,5 +1,11 @@
 <?xml version="1.0"?>
 
+<!--
+    Based on the HMCTS Spring Boot template:
+    https://github.com/hmcts/template-spring-boot/blob/master/skeleton/config/pmd/ruleset.xml
+
+    Local deviations and extensions are documented next to the relevant rules.
+-->
 <ruleset name="Java Logging ruleset"
          xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -8,6 +14,7 @@
 
     <rule ref="category/java/bestpractices.xml">
         <exclude name="GuardLogStatement" />
+        <!-- Local deviation: UnitTestContainsTooManyAsserts remains enabled. -->
     </rule>
     <rule ref="category/java/codestyle.xml">
         <exclude name="AtLeastOneConstructor" />
@@ -47,6 +54,10 @@
     </rule>
     <rule ref="category/java/design.xml/LawOfDemeter">
         <properties>
+            <!--
+                Local deviation: also suppress static-property-access findings and do not use the
+                template's trustRadius property.
+            -->
             <property name="violationSuppressRegex" value="(.*method chain calls.*|.*object not created locally.*|.*static property access.*)" />
         </properties>
     </rule>
@@ -60,9 +71,11 @@
         <exclude name="CommentSize" />
         <exclude name="UncommentedEmptyMethodBody" />
     </rule>
+    <!-- Local deviation: the template's category/java/errorprone.xml rules are not enabled. -->
     <rule ref="category/java/multithreading.xml" />
     <rule ref="category/java/performance.xml" />
     <rule ref="category/java/security.xml" />
+    <!-- Local extension: allow class names with a minimum length of four characters. -->
     <rule ref="category/java/codestyle.xml/ShortClassName">
         <properties>
             <property name="minimum" value="4" />

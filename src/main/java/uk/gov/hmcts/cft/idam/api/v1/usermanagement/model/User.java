@@ -19,7 +19,6 @@ public class User extends BaseUser {
     /**
      * Creates an empty user.
      */
-    @SuppressWarnings("PMD.UnnecessaryConstructor")
     public User() {
         super();
     }

@@ -15,7 +15,6 @@ public class UserWithRoleIds extends BaseUser {
     /**
      * Creates an empty user with role IDs.
      */
-    @SuppressWarnings("PMD.UnnecessaryConstructor")
     public UserWithRoleIds() {
         super();
     }
