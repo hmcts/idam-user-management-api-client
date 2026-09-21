@@ -98,6 +98,14 @@ publishing {
 			groupId = project.group
 			artifactId = 'idam-user-management-api-client'
 			version = project.version
+			versionMapping {
+				usage('java-api') {
+					fromResolutionOf('runtimeClasspath')
+				}
+				usage('java-runtime') {
+					fromResolutionResult()
+				}
+			}
 		}
 	}
 	repositories {
