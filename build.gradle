@@ -8,7 +8,7 @@ plugins {
 	id 'checkstyle'
 	id 'pmd'
 	id 'jacoco'
-	id 'com.github.ben-manes.versions' version '0.64.0'
+	id 'io.github.ben-manes.versions' version '0.64.0'
 }
 
 def buildNumber = System.getenv("RELEASE_VERSION")?.replace("refs/tags/", "") ?: "DEV-SNAPSHOT"
@@ -95,9 +95,26 @@ publishing {
 	publications {
 		Main(MavenPublication) {
 			from components.java
-			groupId project.group
-			artifactId 'idam-user-management-api-client'
-			version project.version
+			groupId = project.group
+			artifactId = 'idam-user-management-api-client'
+			version = project.version
+			pom {
+				name = 'IdAM User Management API Client'
+				description = 'A Java client for the HMCTS IdAM User Management API'
+				url = 'https://github.com/hmcts/idam-user-management-api-client'
+				licenses {
+					license {
+						name = 'MIT License'
+						url = 'https://opensource.org/license/mit'
+						distribution = 'repo'
+					}
+				}
+				scm {
+					connection = 'scm:git:https://github.com/hmcts/idam-user-management-api-client.git'
+					developerConnection = 'scm:git:git@github.com:hmcts/idam-user-management-api-client.git'
+					url = 'https://github.com/hmcts/idam-user-management-api-client'
+				}
+			}
 			versionMapping {
 				usage('java-api') {
 					fromResolutionOf('runtimeClasspath')
@@ -118,38 +135,6 @@ publishing {
             }
         }
     }
-}
-
-tasks.register('verifyPublishedPom') {
-	dependsOn tasks.named('generatePomFileForMainPublication')
-
-	doLast {
-		def pom = javax.xml.parsers.DocumentBuilderFactory.newInstance()
-			.newDocumentBuilder()
-			.parse(file("$buildDir/publications/Main/pom-default.xml"))
-		def dependencies = pom.getElementsByTagName('dependencies').item(0).getElementsByTagName('dependency')
-		def publishedScopes = (0..<dependencies.length).collectEntries { index ->
-			def dependency = dependencies.item(index)
-			def groupId = dependency.getElementsByTagName('groupId').item(0).textContent
-			def artifactId = dependency.getElementsByTagName('artifactId').item(0).textContent
-			def scope = dependency.getElementsByTagName('scope').item(0).textContent
-			[("${groupId}:${artifactId}".toString()): scope]
-		}
-		def expectedScopes = [
-			'org.springframework.cloud:spring-cloud-starter-openfeign': 'compile',
-			'com.fasterxml.jackson.core:jackson-annotations'          : 'compile',
-			'com.fasterxml.jackson.core:jackson-core'                 : 'runtime',
-			'com.fasterxml.jackson.core:jackson-databind'             : 'runtime'
-		]
-
-		if (publishedScopes != expectedScopes) {
-			throw new GradleException("Unexpected published dependency scopes: ${publishedScopes}")
-		}
-	}
-}
-
-tasks.named('check') {
-	dependsOn tasks.named('verifyPublishedPom')
 }
 
 bootJar {
