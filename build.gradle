@@ -98,31 +98,6 @@ publishing {
 			groupId = project.group
 			artifactId = 'idam-user-management-api-client'
 			version = project.version
-			pom {
-				name = 'IdAM User Management API Client'
-				description = 'A Java client for the HMCTS IdAM User Management API'
-				url = 'https://github.com/hmcts/idam-user-management-api-client'
-				licenses {
-					license {
-						name = 'MIT License'
-						url = 'https://opensource.org/license/mit'
-						distribution = 'repo'
-					}
-				}
-				scm {
-					connection = 'scm:git:https://github.com/hmcts/idam-user-management-api-client.git'
-					developerConnection = 'scm:git:git@github.com:hmcts/idam-user-management-api-client.git'
-					url = 'https://github.com/hmcts/idam-user-management-api-client'
-				}
-			}
-			versionMapping {
-				usage('java-api') {
-					fromResolutionOf('runtimeClasspath')
-				}
-				usage('java-runtime') {
-					fromResolutionResult()
-				}
-			}
 		}
 	}
 	repositories {
